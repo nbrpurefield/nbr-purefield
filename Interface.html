@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBR Purefield | Premium Organic Harvest</title>
+    <!-- Google Fonts for Luxury & Clean Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase Core Compatibility SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+
+    <!-- Luxury Top Brand Bar -->
+    <header class="brand-header">
+        <div class="logo-area">
+            <span class="brand-main">NBR</span>
+            <span class="brand-sub">PUREFIELD</span>
+        </div>
+        <p class="tagline">Directly from Father's Farm • Harvested for Sunday Delivery</p>
+    </header>
+
+    <!-- Marketing Psychology Banner -->
+    <div class="banner-container">
+        <div class="trust-banner">
+            <span class="badge-pasupu">🎯 HARVEST GUARANTEE</span>
+            <p>If even a single fruit or package feels subpar, let us know. We replace it in your next Sunday slot instantly—no questions asked.</p>
+        </div>
+    </div>
+
+    <!-- Main Dynamic Layout Container -->
+    <main class="main-layout">
+        
+        <!-- Left Filter Panel (Vaaradhi Inspired) -->
+        <aside class="filter-sidebar">
+            <h3>Filter Harvest</h3>
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterCategory('all', this)">All Products</button>
+                <button class="filter-btn" onclick="filterCategory('staple', this)">Grains & Staples</button>
+                <button class="filter-btn" onclick="filterCategory('fruit', this)">Seasonal Fruits</button>
+            </div>
+            
+            <div class="sidebar-story-card">
+                <h4>Our Story</h4>
+                <p>Pure organic grains and fruits cultivated with natural manure, traditional patience, and zero synthetic pesticides.</p>
+            </div>
+        </aside>
+
+        <!-- Center Product Grid Grid -->
+        <section class="catalog-display">
+            <div class="products-grid" id="products-container">
+                <!-- Javascript dynamically builds cards here -->
+            </div>
+        </section>
+
+        <!-- Right Side Checkout Box -->
+        <aside class="checkout-sidebar" id="cart-box">
+            <h3>Your Sunday Basket</h3>
+            <div id="cart-items" class="empty-state">Your basket is waiting for fresh harvest items...</div>
+            <div class="pricing-summary">
+                <div class="price-row"><span>Subtotal</span><strong>₹<span id="cart-total">0</span></strong></div>
+                <p id="delivery-note" class="delivery-incentive">Add items to check delivery parameters</p>
+            </div>
+            <button onclick="openVerificationModal()" id="checkout-btn" class="action-btn" disabled>Lock In My Sunday Slot</button>
+        </aside>
+
+    </main>
+
+    <!-- Professional Verification Dialog Overlap Wrapper -->
+    <div id="otp-modal" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal-btn" onclick="closeVerificationModal()">&times;</span>
+            <div class="modal-header-accent"></div>
+            <div class="modal-body">
+                <h3>Secure Booking</h3>
+                <p>Verify your contact detail to queue your Sunday basket.</p>
+                
+                <div id="phone-input-view">
+                    <div class="input-block">
+                        <label>Your Name</label>
+                        <input type="text" id="cust-name" placeholder="Enter full name" required>
+                    </div>
+                    <div class="input-block">
+                        <label>WhatsApp Phone Number</label>
+                        <input type="tel" id="phone-number" value="+91" placeholder="+91XXXXXXXXXX">
+                    </div>
+                    <div id="recaptcha-container"></div>
+                    <button class="submit-form-btn" onclick="sendSMSOTP()">Send Verification Code</button>
+                </div>
+
+                <div id="otp-input-view" style="display: none;">
+                    <div class="input-block">
+                        <label>6-Digit SMS Code</label>
+                        <input type="text" id="otp-code" placeholder="Enter OTP Code">
+                    </div>
+                    <button class="submit-form-btn payment-accent" onclick="verifyCodeAndSave()">Confirm Order & Pay via UPI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
